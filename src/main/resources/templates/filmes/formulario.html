@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html
+  
+  layout:decorate="~{template.html}"
+>
+  <head>
+    <title>Listagem de Filmes</title>
+   
+  </head>
+  <body>
+
+    <div layout:fragment="conteudo">
+      <div class="container">
+        <h1>Cadastro de Filmes</h1>
+        <a href="/filmes">Listar</a>
+         
+        <form method="post" action="/filmes">
+			 <input type="hidden" name="_method" value="put" th:if="${filme != null}">
+            <input type="hidden" name="id" th:value="${filme?.id}">
+         
+         <div class="row">
+			 
+            <div class="col">
+              <label>Nome: </label>
+              <input class="form-control" id="nome" name="nome" th:value="${filme?.nome}"/>
+            </div>
+            
+            <div class="col">
+              <label>Duração: </label> 
+              <input  class="form-control" id="duracao" name="duracao" th:value="${filme?.duracaoEmMinutos}"/>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Ano: </label>
+              <input class="form-control" id="ano" name="ano" th:value="${filme?.anoLancamento}" />
+            </div>
+            <div class="col">
+              <label>Gênero: </label>
+              <input class="form-control" id="genero" name="genero" th:value="${filme?.genero}"  />
+            </div>
+          </div>
+		  
+		  <div class="row">
+			  <div class="col">
+				  
+				   <input
+            type="submit"
+            class="btn btn-success btn-sm"
+            value="Cadastrar"
+          />
+			  </div>
+			 
+		  </div>
+         
+          
+        </form>
+      
+    </div>
+    
+    
+  </body>
+</html>

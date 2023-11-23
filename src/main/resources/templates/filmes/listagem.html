@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR" 
+	 layout:decorate="~{template.html}"
+>
+<head>
+
+<title>Listagem de Filmes</title>
+ 
+</head>
+<body>
+	<div layout:fragment="conteudo">
+	<h1>Listagem de Filmes</h1>
+	<a href="/filmes/formulario">Novo Filme</a>
+	<div class="container-fluid">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Duração</th>
+				<th>Ano de Lançamento</th>
+				<th>Gênero</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="filme : ${lista}">
+				<td th:text="${filme.nome}"></td>
+				<td th:text="${filme.duracaoEmMinutos}"></td>
+				<td th:text="${filme.anoLancamento}"></td>
+				<td th:text="${filme.genero}"></td>
+				<td>
+					<a th:href="@{/filmes/formulario?id={id}(id=${filme.id})}">Editar Filme</a>
+					
+					
+					
+					<form action="/filmes" method="post">
+						<input type="hidden" name="_method" value="delete">
+						<input type="hidden" name="id" th:value="${filme.id}">
+						
+						<input class="btn btn-danger btn-sm" 
+						  type="submit" value="Excluir">
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</div>
+</body>
+</html>
